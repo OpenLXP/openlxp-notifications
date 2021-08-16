@@ -4,10 +4,10 @@ on:
   push:
     branches:
     - main
-    - openlxp_notification_package
+    - feature/openlxp-notification_package
   pull_request:
     branches:
-    - openlxp_notification_package
+    - main
 jobs:
   code-test:
 # Kicks off the workflow and prepares Github to run coverage test using a ubuntu-latest container.
