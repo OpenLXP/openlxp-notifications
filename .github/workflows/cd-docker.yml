@@ -7,7 +7,6 @@ on:
     - openlxp_notification_package
   pull_request:
     branches:
-    - main
     - openlxp_notification_package
 jobs:
   code-test:
