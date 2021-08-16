@@ -3,11 +3,12 @@ name: Docker CD
 on:
   push:
     branches:
+    - main
     - openlxp_notification_package
-    - main   
   pull_request:
     branches:
-      - main
+    - main
+    - openlxp_notification_package
 jobs:
   code-test:
 # Kicks off the workflow and prepares Github to run coverage test using a ubuntu-latest container.
