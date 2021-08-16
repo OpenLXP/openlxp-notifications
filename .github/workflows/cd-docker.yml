@@ -3,7 +3,6 @@ name: Docker CD
 on:
   push:
     branches:
-      - main
       - openlxp_notification_package
   pull_request:
     branches:
