@@ -1,3 +1,1 @@
 # openlxp-notifications
-
-test
