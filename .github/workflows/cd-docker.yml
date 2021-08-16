@@ -4,6 +4,7 @@ on:
   push:
     branches:
     - feature/openlxp-notification_package
+    - main
   pull_request:
     branches:
     - main
