@@ -5,7 +5,7 @@ from ddt import ddt
 from django.test import tag
 
 from openlxp_notifications.management.utils.notification import (
-    check_if_email_verified, send_notifications)
+    check_if_email_verified, send_notifications, send_notifications_with_msg)
 
 from .test_setup import TestSetUp
 
@@ -44,3 +44,13 @@ class UtilsTests(TestSetUp):
             email_value = 'receiver2@openlxp.com'
             return_val = check_if_email_verified(email_value)
             self.assertTrue(return_val)
+
+    def test_send_notifications_with_msg(self):
+        """Test for function to send emails of log file to personas"""
+        with patch('openlxp_notifications.management.utils.notification'
+                   '.EmailMessage') as mock_send, \
+                patch('openlxp_notifications.management.utils.notification'
+                      '.boto3.client'):
+            send_notifications_with_msg(self.receive_email_list,
+                                        self.sender_email, 'Message')
+            self.assertEqual(mock_send.call_count, 2)
