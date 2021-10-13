@@ -3,7 +3,7 @@ import logging
 from django.core.management.base import BaseCommand
 
 from openlxp_notifications.management.utils.notification import \
-    send_notifications
+    send_notifications, send_notifications_with_msg
 from openlxp_notifications.models import (ReceiverEmailConfiguration,
                                           SenderEmailConfiguration)
 
@@ -23,6 +23,13 @@ def send_log_email():
     sender_email_configuration = SenderEmailConfiguration.objects.first()
     sender = sender_email_configuration.sender_email_address
     send_notifications(email, sender)
+
+
+def send_log_email_with_msg(email, sender, msg):
+    """ function to send emails of log file to personas"""
+
+    # Getting sender email id
+    send_notifications_with_msg(email, sender, msg)
 
 
 class Command(BaseCommand):

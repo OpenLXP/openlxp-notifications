@@ -96,3 +96,41 @@ def send_notifications(email, sender):
         except ClientError as e:
             logger.error(e.response['Error']['Message'])
             continue
+
+
+def send_notifications_with_msg(email, sender, msg):
+    """This function sends email of a log file """
+
+    logger.info('Sending email to recipients')
+    # Replace sender@example.com with your "From" address.
+    # This address must be verified with Amazon SES.
+    SENDER = sender
+    # Replace recipient@example.com with a "To" address. If your account
+    # is still in the sandbox, this address must be verified.
+    RECIPIENT = email
+    # The subject line for the email.
+    SUBJECT = "New Message From OpenLXP Portal"
+
+    # # The HTML body of the email.
+    BODY_HTML = """\
+       <html>
+       <head></head>
+       <body>
+       <p>""" + msg + """</p>
+       </body>
+       </html>
+       """
+
+    for each_recipient in RECIPIENT:
+        try:
+            # Provide the contents of the email.
+
+            mail = EmailMessage(SUBJECT, BODY_HTML, SENDER,
+                                [each_recipient])
+            mail.content_subtype = "html"
+            # Add the attachment to the parent container.
+            mail.send()
+        # Display an error if something goes wrong.
+        except ClientError as e:
+            logger.error(e.response['Error']['Message'])
+            continue
