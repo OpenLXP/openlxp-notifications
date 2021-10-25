@@ -8,7 +8,7 @@ from openlxp_notifications.management.utils.notification import \
 
 
 class ReceiverEmailConfiguration(TimeStampedModel):
-    """Model for Email Configuration """
+    """Model for Receiver Email Configuration """
 
     email_address = models.EmailField(
         max_length=254,
@@ -29,7 +29,7 @@ class ReceiverEmailConfiguration(TimeStampedModel):
 
 
 class SenderEmailConfiguration(TimeStampedModel):
-    """Model for Email Configuration """
+    """Model for Sender Email Configuration """
 
     sender_email_address = models.EmailField(
         max_length=254,
@@ -40,3 +40,41 @@ class SenderEmailConfiguration(TimeStampedModel):
             raise ValidationError('There is can be only one '
                                   'SenderEmailConfiguration instance')
         return super(SenderEmailConfiguration, self).save(*args, **kwargs)
+
+
+class EmailConfiguration(TimeStampedModel):
+    """Model for Email Configuration """
+
+    LOG_TYPE_CHOICES = (
+        ('attachment', 'ATTACHMENT'),
+        ('msg', 'MESSAGE'),
+    )
+    HTML_File = models.FileField(upload_to='HTML_Files')
+
+    Subject = models.CharField(max_length=200, null=True)
+
+    Email_Content = models.TextField(max_length=200, null=True)
+
+    Signature = models.TextField(max_length=200, null=True)
+
+    Email_Us = models.EmailField(max_length=254,
+                                 help_text='Enter email address',
+                                 null= True)
+
+    FAQ_URL = models.CharField(max_length=200, null=True)
+
+    Unsubscribe_Email_ID = models.EmailField(max_length=254,
+                                             help_text='Enter email address')
+    Logs_Type = models.CharField(max_length=200, choices=LOG_TYPE_CHOICES,
+                                 null=True)
+
+    def get_absolute_url(self):
+        """ URL for displaying individual model records."""
+        return reverse('Configuration-detail', args=[str(self.id)])
+
+    def __str__(self):
+        """String for representing the Model object."""
+        return f'{self.id}'
+
+    def save(self, *args, **kwargs):
+        return super(EmailConfiguration, self).save(*args, **kwargs)
