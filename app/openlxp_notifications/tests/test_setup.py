@@ -16,6 +16,13 @@ class TestSetUp(TestCase):
                                    'receiver1@openlxp.com']
         self.sender_email = "sender@openlxp.com"
 
+        self.Subject = 'Test Email'
+        self.Email_Content = 'Here is the email content'
+        self.Signature = 'Email Signature'
+        self.Email_Us = 'sample_email@openlxp.com'
+        self.FAQ_URL = 'https://sample.url.com'
+        self.Unsubscribe_Email_ID = 'unsubscribe_email@openlxp.com'
+
         return super().setUp()
 
     def tearDown(self):

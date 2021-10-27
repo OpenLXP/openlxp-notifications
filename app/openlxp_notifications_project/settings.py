@@ -29,7 +29,7 @@ load_dotenv()
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY_VAL')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 mimetypes.add_type("text/css", ".css", True)
 
@@ -78,6 +78,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'openlxp_notifications_project.wsgi.application'
 
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -139,6 +142,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+MEDIA_URL = '/openlxp_notifications/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 LOG_PATH = os.environ.get('LOG_PATH')
 LOGGING = {
     'version': 1,
@@ -177,5 +184,3 @@ LOGGING = {
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
