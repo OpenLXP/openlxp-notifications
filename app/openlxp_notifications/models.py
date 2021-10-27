@@ -47,26 +47,31 @@ class EmailConfiguration(TimeStampedModel):
 
     LOG_TYPE_CHOICES = (
         ('attachment', 'ATTACHMENT'),
-        ('msg', 'MESSAGE'),
+        ('message', 'MESSAGE'),
     )
-    HTML_File = models.FileField(upload_to='HTML_Files')
 
-    Subject = models.CharField(max_length=200, null=True)
+    Subject = models.CharField(max_length=200,
+                               default='OpenLXP Conformance Alerts')
 
-    Email_Content = models.TextField(max_length=200, null=True)
+    Email_Content = models.TextField(max_length=200, null=True, blank=True)
 
-    Signature = models.TextField(max_length=200, null=True)
+    Signature = models.TextField(max_length=200)
 
     Email_Us = models.EmailField(max_length=254,
-                                 help_text='Enter email address',
-                                 null= True)
+                                 help_text='Enter email address')
 
-    FAQ_URL = models.CharField(max_length=200, null=True)
+    FAQ_URL = models.CharField(max_length=200)
 
     Unsubscribe_Email_ID = models.EmailField(max_length=254,
                                              help_text='Enter email address')
     Logs_Type = models.CharField(max_length=200, choices=LOG_TYPE_CHOICES,
-                                 null=True)
+                                 help_text='Check readme files of the '
+                                           'components before choosing the '
+                                           ' log type')
+
+    HTML_File = models.FileField(upload_to='HTML_Files',
+                                 help_text='Check sample HTML files in the '
+                                           'readme files of the components')
 
     def get_absolute_url(self):
         """ URL for displaying individual model records."""
@@ -77,4 +82,7 @@ class EmailConfiguration(TimeStampedModel):
         return f'{self.id}'
 
     def save(self, *args, **kwargs):
+        if not self.pk and EmailConfiguration.objects.exists():
+            raise ValidationError('There is can be only one '
+                                  'EmailConfiguration instance')
         return super(EmailConfiguration, self).save(*args, **kwargs)

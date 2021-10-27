@@ -16,12 +16,12 @@ class SenderEmailConfigurationAdmin(admin.ModelAdmin):
 
 @admin.register(EmailConfiguration)
 class EmailConfigurationAdmin(admin.ModelAdmin):
-    list_display = ('HTML_File',
-                    'Subject',
+    list_display = ('Subject',
                     'Email_Content',
                     'Signature',
                     'Email_Us',
                     'FAQ_URL',
                     'Unsubscribe_Email_ID',
                     'Logs_Type',
+                    'HTML_File',
                     )

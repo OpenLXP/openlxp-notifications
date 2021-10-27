@@ -24,7 +24,7 @@ def send_log_email():
     sender = sender_email_configuration.sender_email_address
 
     email_configuration = EmailConfiguration.objects.filter(
-        Logs_Type='Attachment').values('HTML_File', 'Subject', 'Email_Content',
+        Logs_Type='ATTACHMENT').values('HTML_File', 'Subject', 'Email_Content',
                                        'Signature', 'Email_Us', 'FAQ_URL',
                                        'Unsubscribe_Email_ID', 'Logs_Type'
                                        ).first()
@@ -36,10 +36,10 @@ def send_log_email_with_msg(email, sender, msg):
     """ function to send emails of log file to personas"""
 
     email_configuration = EmailConfiguration.objects.filter(
-        Logs_Type='Attachment').values('HTML_File', 'Subject', 'Email_Content',
-                                       'Signature', 'Email_Us', 'FAQ_URL',
-                                       'Unsubscribe_Email_ID', 'Logs_Type'
-                                       ).first()
+        Logs_Type='MESSAGE').values('HTML_File', 'Subject', 'Email_Content',
+                                    'Signature', 'Email_Us', 'FAQ_URL',
+                                    'Unsubscribe_Email_ID', 'Logs_Type'
+                                    ).first()
 
     # Getting sender email id
     send_notifications_with_msg(email, sender, msg, email_configuration)
