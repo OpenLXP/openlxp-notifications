@@ -4,8 +4,7 @@ from unittest.mock import patch, mock_open
 from ddt import ddt
 from django.test import tag
 from openlxp_notifications.management.utils.notification import (
-    check_if_email_verified, send_notifications, send_notifications_with_msg,
-    check_if_email_verified)
+    check_if_email_verified, send_notifications, send_notifications_with_msg)
 
 from openlxp_notifications.models import EmailConfiguration
 from .test_setup import TestSetUp
