@@ -26,10 +26,12 @@ class CommandTests(TestSetUp):
         attachment"""
 
         with patch(
-                    'openlxp_notifications.management.commands.'
-                    'conformance_alerts.send_notifications',
-                    return_value=None
-                ) as mock_send_notification:
+                'openlxp_notifications.management.commands.'
+                'conformance_alerts.send_notifications',
+                return_value=None
+        ) as mock_send_notification, \
+                patch('openlxp_notifications.models.email_verification',
+                      return_value=None):
             receive_email = ReceiverEmailConfiguration(
                 email_address=self.receive_email_list1)
             receive_email.save()
@@ -53,11 +55,12 @@ class CommandTests(TestSetUp):
         """Test for function to send emails of log file to personas with
         message"""
         with patch(
-                    'openlxp_notifications.management.commands.'
-                    'conformance_alerts.send_notifications_with_msg',
-                    return_value=None
-                ) as mock_send_notifications_with_msg:
-
+                'openlxp_notifications.management.commands.'
+                'conformance_alerts.send_notifications_with_msg',
+                return_value=None
+        ) as mock_send_notifications_with_msg, \
+                patch('openlxp_notifications.models.email_verification',
+                      return_value=None):
             send_email = SenderEmailConfiguration(
                 sender_email_address=self.sender_email)
             send_email.save()
