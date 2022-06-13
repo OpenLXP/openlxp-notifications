@@ -7,7 +7,7 @@ logger = logging.getLogger('dict_config_logger')
 
 def email_verification(email):
     """Function to send email verification"""
-    ses = boto3.client('ses')
+    # ses = boto3.client('ses')
     check = check_if_email_verified(email)
 
     if check:
