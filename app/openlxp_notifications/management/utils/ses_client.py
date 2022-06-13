@@ -11,13 +11,14 @@ def email_verification(email):
     check = check_if_email_verified(email)
 
     if check:
-        logger.info("Email is sent for Verification")
-
-        response = ses.verify_email_identity(
-            EmailAddress=email
-        )
-
-        logger.info(response)
+        logger.error(str(email) + "Email is not verified")
+        # logger.info("Email is sent for Verification")
+        #
+        # response = ses.verify_email_identity(
+        #     EmailAddress=email
+        # )
+        #
+        # logger.info(response)
 
 
 def check_if_email_verified(email):

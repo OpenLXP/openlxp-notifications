@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
                 ('Email_Us', models.EmailField(help_text='Enter email address', max_length=254)),
                 ('FAQ_URL', models.CharField(max_length=200)),
                 ('Unsubscribe_Email_ID', models.EmailField(help_text='Enter email address', max_length=254)),
-                ('Content_Type', models.CharField(choices=[('attachment', 'Attach Logs to email'), ('message', 'Send notification message')], help_text='Check readme files of the components before choosing the  log type', max_length=200)),
+                ('Logs_Type', models.CharField(choices=[('attachment', 'Attach Logs to email'), ('message', 'Send notification message')], help_text='Check readme files of the components before choosing the  log type', max_length=200)),
                 ('HTML_File', models.FileField(help_text='Check sample HTML files in the readme files of the components', upload_to='HTML_Files')),
             ],
             options={
